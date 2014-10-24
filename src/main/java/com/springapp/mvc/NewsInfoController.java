@@ -21,14 +21,13 @@ import java.util.logging.Logger;
 @Controller
 public class NewsInfoController {
 
-//    @Resource
-//    NewsInfoMapper newsInfoMapper;
+    @Resource
+    NewsInfoMapper newsInfoMapper;
 
-    @RequestMapping(value = "/getNewsInfo.do",method = RequestMethod.GET)
+    @RequestMapping(value = "/getNewsInfo.do",method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getUserList(){
-//        NewsInfo newsInfo = newsInfoMapper.selectByPrimaryKey(1);
-//        return JSON.toJSONString(newsInfo);
-        return "";
+        NewsInfo newsInfo = newsInfoMapper.selectByPrimaryKey(1);
+        return JSON.toJSONString(newsInfo);
     }
 }
