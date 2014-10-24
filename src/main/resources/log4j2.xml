@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指log4j2每隔1800秒（半小时），自动监控该配置文件是否有变化，如果变化，则自动根据文件内容重新配置 -->
+<configuration status="off" monitorInterval="1800">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout charset="GBK" pattern="%d{HH:mm:ss.SSS} %-5level %class{36}.%M()/%L  - %msg%xEx%n"/>
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} %t %p [%c] - [%m]%L"/>-->
+
+        </Console>
+        <RollingFile name="RollingFile" fileName="logs/app.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout charset="GBK" pattern="%d{yyyy.MM.dd HH:mm:ss z} %-5level %class{36}.%M()/%L - %msg%xEx%n"/>
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} %t %p [%c] - [%m]%L"/>-->
+            <SizeBasedTriggeringPolicy size="100MB" />
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <logger name="com.r7oad.udsp" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>
+        </logger>
+        <root level="info">
+            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>
+
+        <!--
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Configuration status="WARN">
+            <Appenders>
+                <Console name="Console" target="SYSTEM_OUT">
+                    <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+                </Console>
+            </Appenders>
+            <Loggers>
+                <Root level="debug">
+                    <AppenderRef ref="Console"/>
+                </Root>
+            </Loggers>
+        </Configuration>  -->

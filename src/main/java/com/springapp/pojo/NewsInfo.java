@@ -1,14 +1,17 @@
 package com.springapp.pojo;
 
-/**
- * Created by thanks_bin on 2014/10/23.
- */
-public class NewsInfo {
+import java.io.Serializable;
 
+public class NewsInfo implements Serializable {
     private Integer id;
+
     private String title;
-    private String content;
+
     private String image;
+
+    private String content;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -23,15 +26,7 @@ public class NewsInfo {
     }
 
     public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+        this.title = title == null ? null : title.trim();
     }
 
     public String getImage() {
@@ -39,6 +34,29 @@ public class NewsInfo {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = image == null ? null : image.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", image=").append(image);
+        sb.append(", content=").append(content);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

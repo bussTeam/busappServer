@@ -1,6 +1,7 @@
 package com.springapp.mvc;
 
-import com.springapp.dao.NewsInfoDao;
+import com.alibaba.fastjson.JSON;
+import com.springapp.dao.NewsInfoMapper;
 import com.springapp.pojo.NewsInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,16 +21,14 @@ import java.util.logging.Logger;
 @Controller
 public class NewsInfoController {
 
-    @Resource
-    private NewsInfoDao newsInfoDao;
+//    @Resource
+//    NewsInfoMapper newsInfoMapper;
 
     @RequestMapping(value = "/getNewsInfo.do",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getUserList(){
-        Collection<NewsInfo> userInfoList = newsInfoDao.doquery();
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("data", userInfoList);
-        modelMap.put("success", true);
-        return modelMap;
+    public String getUserList(){
+//        NewsInfo newsInfo = newsInfoMapper.selectByPrimaryKey(1);
+//        return JSON.toJSONString(newsInfo);
+        return "";
     }
 }
