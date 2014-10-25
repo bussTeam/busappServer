@@ -2,7 +2,13 @@ package com.springapp.dao;
 
 import com.springapp.pojo.NewsInfo;
 
+import javax.lang.model.element.NestingKind;
+import java.util.List;
+
 public interface NewsInfoMapper {
+
+    List<NewsInfo> listAllNews();
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(NewsInfo record);

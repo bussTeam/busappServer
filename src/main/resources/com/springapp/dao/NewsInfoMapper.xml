@@ -23,6 +23,14 @@
     from news_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="listAllNews" resultMap="ResultMapWithBLOBs">
+      select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from news_info
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news_info
     where id = #{id,jdbcType=INTEGER}
