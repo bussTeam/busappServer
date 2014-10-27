@@ -20,7 +20,13 @@ public class ResultMap {
 
     public String toJsonString(String callback, ResultMap resultMap){
         String resultJsonString = JSON.toJSONString(resultMap);
-        return String.format("%s(%s)",callback, resultJsonString);
+        StringBuilder sb =new StringBuilder();
+        sb.append(CallBackContentHolder.getCallBackFuncName());
+        sb.append("(");
+        sb.append(resultJsonString);
+        sb.append(")");
+        CallBackContentHolder.clearCallBackFuncName();
+        return sb.toString();
     }
     public boolean isSuccess() {
         return Success;

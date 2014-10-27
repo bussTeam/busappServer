@@ -17,7 +17,7 @@ public class UrlFilter implements Filter{
             HttpServletRequest request = (HttpServletRequest)servletRequest;
             String context = request.getContextPath();
             String uri = request.getRequestURI();
-            System.out.println(request.getParameterMap());
+            CallBackContentHolder.setCallBackFuncName(request.getParameter("callback"));
             String path = uri.substring(context.length());
             request.getRequestDispatcher(path).forward(servletRequest, servletResponse);
         }
